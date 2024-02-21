@@ -14,6 +14,7 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: 16
+      - run: sudo docker-compose down
       - run: sudo nohup docker-compose up --build -d
       - name: Upload build artifacts
         uses: actions/upload-artifact@v2
