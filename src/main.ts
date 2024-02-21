@@ -66,7 +66,6 @@ app.post("/classroom/:name", async (req: Request, res: Response) => {
     const result = await collection.findOne({ name });
     res.status(200).send(result)
 })
-
 app.listen(5001, () => {
     console.log('Server is running on port 5007');
 });
