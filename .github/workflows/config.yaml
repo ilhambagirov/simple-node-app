@@ -2,22 +2,22 @@ name: Build and Deploy
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   build:
     runs-on: self-hosted
     steps:
+      - run: echo ${{ secrets.USERPASS }} | sudo -S docker-compose down -S
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
           node-version: 16
-      - run: echo ${{ secrets.USERPASS }} | sudo -S docker-compose down -S
       - run: echo ${{ secrets.USERPASS }} | sudo -S sudo nohup docker-compose up --build -d
       - name: Upload build artifacts
         uses: actions/upload-artifact@v2
         with:
           name: build-artifacts
-          path: dist/  # Replace with your build output path
+          path: dist/ # Replace with your build output path
