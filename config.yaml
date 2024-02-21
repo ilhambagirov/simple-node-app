@@ -1,0 +1,49 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 16
+      - run: sudo docker-compose up --build
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: build-artifacts
+          path: dist/  # Replace with your build output path
+
+  # deploy:
+  #   needs: build
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - name: Download build artifacts
+  #       uses: actions/download-artifact@v2
+  #       with:
+  #         name: build-artifacts
+  #     - name: Transfer files to server
+  #       uses: sftp-action/sftp@v2
+  #       with:
+  #         host: your_server_hostname
+  #         username: your_server_username
+  #         password: your_server_password  # Consider using SSH keys instead
+  #         port: 22
+  #         remote_path: /path/to/app/directory
+  #         local_path: build/  # Replace with build output path
+  #     - name: Restart server
+  #       uses: sftp-action/sftp@v2
+  #       with:
+  #         host: your_server_hostname
+  #         username: your_server_username
+  #         password: your_server_password  # Consider using SSH keys instead
+  #         port: 22
+  #         remote_command: your_server_restart_command  # Replace with actual command
