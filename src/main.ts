@@ -46,4 +46,3 @@ app.post("/student/create", async (req: Request, res: Response) => {
 app.listen(5001, () => {
     console.log('Server is running on port 5007');
 });
-
