@@ -32,7 +32,7 @@ app.get("/students", async (req: Request, res: Response) => {
 
 app.post("/student/create", async (req: Request, res: Response) => {
     const body = req.body;
-    
+
     const client = new MongoClient(process.env.MONGODB_URI!)
     await client.connect()
 
@@ -41,6 +41,30 @@ app.post("/student/create", async (req: Request, res: Response) => {
     const result = await collection.insertOne({ name: body.name, age: body.age });
 
     res.status(200).send(result.insertedId)
+})
+
+app.post("/classroom/create", async (req: Request, res: Response) => {
+    const body = req.body;
+
+    const client = new MongoClient(process.env.MONGODB_URI!)
+    await client.connect()
+
+    const db = client.db(process.env.DB_NAME)
+    const collection = db.collection("Classrooms")
+    const result = await collection.insertOne({ name: body.name, students: [...body.students] });
+
+    res.status(200).send(result.insertedId)
+})
+
+app.post("/classroom/:name", async (req: Request, res: Response) => {
+    const name = req.params.name;
+    const client = new MongoClient(process.env.MONGODB_URI!)
+    await client.connect()
+
+    const db = client.db(process.env.DB_NAME)
+    const collection = db.collection("Classrooms")
+    const result = await collection.findOne({ name });
+    res.status(200).send(result)
 })
 
 app.listen(5001, () => {
