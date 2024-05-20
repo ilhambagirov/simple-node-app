@@ -16,8 +16,8 @@ services:
     networks:
       app-net:
        ipv4_address: 172.18.0.9
-    depends_on:
-      - mongodb
+    # depends_on:
+    #   - mongodb
     restart: always
 
 networks:
