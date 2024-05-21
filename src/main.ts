@@ -11,71 +11,71 @@ app.use(bodyParser.json());
 
 app.get("/student/:name", async (req: Request, res: Response) => {
     const name = req.params.name;
-    // const client = new MongoClient(process.env.MONGODB_URI!)
-    // await client.connect()
+    const client = new MongoClient(process.env.MONGODB_URI!)
+    await client.connect()
 
-    // const db = client.db(process.env.DB_NAME)
-    // const collection = db.collection("Samples")
-    // const result = await collection.findOne({ name });
-    res.status(200).send(name)
+    const db = client.db(process.env.DB_NAME)
+    const collection = db.collection("Samples")
+    const result = await collection.findOne({ name });
+    res.status(200).send(result)
 })
 
 app.get("/students", async (req: Request, res: Response) => {
-    // const client = new MongoClient(process.env.MONGODB_URI!)
-    // await client.connect()
+    const client = new MongoClient(process.env.MONGODB_URI!)
+    await client.connect()
 
-    // const db = client.db(process.env.DB_NAME)
-    // const collection = db.collection("Samples")
-    // const result = await collection.find().toArray();
-    res.status(200).send("studentss")
+    const db = client.db(process.env.DB_NAME)
+    const collection = db.collection("Samples")
+    const result = await collection.find().toArray();
+    res.status(200).send(result)
 })
 
 app.post("/student/create", async (req: Request, res: Response) => {
     const body = req.body;
 
-    // const client = new MongoClient(process.env.MONGODB_URI!)
-    // await client.connect()
+    const client = new MongoClient(process.env.MONGODB_URI!)
+    await client.connect()
 
-    // const db = client.db(process.env.DB_NAME)
-    // const collection = db.collection("Samples")
-    // const result = await collection.insertOne({ name: body.name, age: body.age });
+    const db = client.db(process.env.DB_NAME)
+    const collection = db.collection("Samples")
+    const result = await collection.insertOne({ name: body.name, age: body.age });
 
-    res.status(200).send(body)
+    res.status(200).send(result)
 })
 
 app.get("/classrooms", async (req: Request, res: Response) => {
-    // const client = new MongoClient(process.env.MONGODB_URI!)
-    // await client.connect()
+    const client = new MongoClient(process.env.MONGODB_URI!)
+    await client.connect()
 
-    // const db = client.db(process.env.DB_NAME)
-    // const collection = db.collection("Classrooms")
-    // const result = await collection.find().toArray();
-    res.status(200).send("classrooms")
+    const db = client.db(process.env.DB_NAME)
+    const collection = db.collection("Classrooms")
+    const result = await collection.find().toArray();
+    res.status(200).send(result)
 })
 
 app.post("/classroom/create", async (req: Request, res: Response) => {
     const body = req.body;
 
-    // const client = new MongoClient(process.env.MONGODB_URI!)
-    // await client.connect()
+    const client = new MongoClient(process.env.MONGODB_URI!)
+    await client.connect()
 
-    // const db = client.db(process.env.DB_NAME)
-    // const collection = db.collection("Classrooms")
-    // const result = await collection.insertOne({ name: body.name, students: [...body.students] });
+    const db = client.db(process.env.DB_NAME)
+    const collection = db.collection("Classrooms")
+    const result = await collection.insertOne({ name: body.name, students: [...body.students] });
 
-    res.status(200).send(body)
+    res.status(200).send(result)
 })
 
-// app.post("/classroom/:name", async (req: Request, res: Response) => {
-//     const name = req.params.name;
-//     const client = new MongoClient(process.env.MONGODB_URI!)
-//     await client.connect()
+app.post("/classroom/:name", async (req: Request, res: Response) => {
+    const name = req.params.name;
+    const client = new MongoClient(process.env.MONGODB_URI!)
+    await client.connect()
 
-//     const db = client.db(process.env.DB_NAME)
-//     const collection = db.collection("Classrooms")
-//     const result = await collection.findOne({ name });
-//     res.status(200).send(result)
-// })
+    const db = client.db(process.env.DB_NAME)
+    const collection = db.collection("Classrooms")
+    const result = await collection.findOne({ name });
+    res.status(200).send(result)
+})
 
 
 app.listen(5001, () => {
