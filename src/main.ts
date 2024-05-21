@@ -21,6 +21,7 @@ app.get("/student/:name", async (req: Request, res: Response) => {
 })
 
 app.get("/students", async (req: Request, res: Response) => {
+    console.log(process.env.MONGODB_URI);
     const client = new MongoClient(process.env.MONGODB_URI!)
     await client.connect()
 

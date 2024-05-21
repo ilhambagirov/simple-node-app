@@ -8,7 +8,6 @@ services:
     ports:
       - 5001:5001
     env_file:
-      - external:true
       - .env 
     environment:
       MONGODB_URI: ${MONGODB_URI}
@@ -34,8 +33,6 @@ services:
       
 volumes:
   mongo-data: {}
-  env_file: 
-   external: true
 
 networks:
   app-net:
