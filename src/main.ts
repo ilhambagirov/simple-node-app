@@ -27,7 +27,7 @@ app.get("/students", async (req: Request, res: Response) => {
     // const db = client.db(process.env.DB_NAME)
     // const collection = db.collection("Samples")
     // const result = await collection.find().toArray();
-    res.status(200).send("students")
+    res.status(200).send("studentss")
 })
 
 app.post("/student/create", async (req: Request, res: Response) => {
