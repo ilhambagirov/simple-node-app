@@ -18,11 +18,3 @@
 //         }
 //     }
 // } 
-
-
-// cd simple-node-app
-// if [[ $(docker ps -a | grep simple-node-app_webapp | wc -l) -gt 0 ]]; then
-//   docker stop $(docker ps -a | grep simple-node-app_webapp | awk '{print $1}')
-//   docker rm $(docker ps -a | grep simple-node-app_webapp | awk '{print $1}') || true
-// fi
-// docker-compose up -d --build --remove-orphans
