@@ -67,16 +67,16 @@ app.post("/classroom/create", async (req: Request, res: Response) => {
     res.status(200).send(result)
 })
 
-app.post("/classroom/:name", async (req: Request, res: Response) => {
-    const name = req.params.name;
-    const client = new MongoClient(process.env.MONGODB_URI!)
-    await client.connect()
+// app.post("/classroom/:name", async (req: Request, res: Response) => {
+//     const name = req.params.name;
+//     const client = new MongoClient(process.env.MONGODB_URI!)
+//     await client.connect()
 
-    const db = client.db(process.env.DB_NAME)
-    const collection = db.collection("Classrooms")
-    const result = await collection.findOne({ name });
-    res.status(200).send(result)
-})
+//     const db = client.db(process.env.DB_NAME)
+//     const collection = db.collection("Classrooms")
+//     const result = await collection.findOne({ name });
+//     res.status(200).send(result)
+// })
 
 
 app.listen(5001, () => {
