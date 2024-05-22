@@ -44,15 +44,15 @@ app.post("/student/create", async (req: Request, res: Response) => {
     res.status(200).send(result)
 })
 
-app.get("/classrooms", async (req: Request, res: Response) => {
-    const client = new MongoClient(process.env.MONGODB_URI!)
-    await client.connect()
+// app.get("/classrooms", async (req: Request, res: Response) => {
+//     const client = new MongoClient(process.env.MONGODB_URI!)
+//     await client.connect()
 
-    const db = client.db(process.env.DB_NAME)
-    const collection = db.collection("Classrooms")
-    const result = await collection.find().toArray();
-    res.status(200).send(result)
-})
+//     const db = client.db(process.env.DB_NAME)
+//     const collection = db.collection("Classrooms")
+//     const result = await collection.find().toArray();
+//     res.status(200).send(result)
+// })
 
 app.post("/classroom/create", async (req: Request, res: Response) => {
     const body = req.body;
