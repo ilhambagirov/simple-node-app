@@ -20,16 +20,16 @@ app.get("/student/:name", async (req: Request, res: Response) => {
     res.status(200).send(result)
 })
 
-// app.get("/students", async (req: Request, res: Response) => {
-//     console.log(process.env.MONGODB_URI);
-//     const client = new MongoClient(process.env.MONGODB_URI!)
-//     await client.connect()
+app.get("/students", async (req: Request, res: Response) => {
+    console.log(process.env.MONGODB_URI);
+    const client = new MongoClient(process.env.MONGODB_URI!)
+    await client.connect()
 
-//     const db = client.db(process.env.DB_NAME)
-//     const collection = db.collection("Samples")
-//     const result = await collection.find().toArray();
-//     res.status(200).send(result)
-// })
+    const db = client.db(process.env.DB_NAME)
+    const collection = db.collection("Samples")
+    const result = await collection.find().toArray();
+    res.status(200).send(result)
+})
 
 app.post("/student/create", async (req: Request, res: Response) => {
     const body = req.body;
